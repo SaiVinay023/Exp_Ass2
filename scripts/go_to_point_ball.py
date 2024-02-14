@@ -1,5 +1,10 @@
 #! /usr/bin/env python
-# import ros stuff
+
+## @file go_to_point_ball.py
+# @brief This node is actionlib server that permits to move the ball
+#
+
+## import ros stuff
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, Point, Pose
@@ -11,15 +16,15 @@ import actionlib
 import actionlib.msg
 import exp_assignment2.msg
 
-# robot state variables
+## ball state variables
 position_ = Point()
 pose_ = Pose()
 yaw_ = 0
-# machine state
+## machine state
 state_ = 0
-# goal
+## goal
 desired_position_ = Point()
-# parameters
+## parameters
 yaw_precision_ = math.pi / 9  # +/- 20 degree allowed
 yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
 dist_precision_ = 0.1
@@ -30,22 +35,20 @@ lb_a = -0.5
 ub_d = 2.0
 z_back = 0.25
 
-# publisher
+## publisher
 pub = None
 pubz = None
 
-# action_server
+## action_server
 act_s = None
 
-# callbacks
-
-
+##Define callback
 def clbk_odom(msg):
     global position_
     global pose_
     global yaw_
 
-    # position
+    ## position
     position_ = msg.pose.pose.position
     pose_ = msg.pose.pose
 
@@ -55,7 +58,7 @@ def change_state(state):
     state_ = state
     print ('State changed to [%s]' % state_)
 
-
+## define function to go straight
 def go_straight_ahead(des_pos):
     global pub, state_, z_back
     err_pos = math.sqrt(pow(des_pos.y - position_.y, 2) +
@@ -90,14 +93,14 @@ def go_straight_ahead(des_pos):
         print ('Position error: [%s]' % err_pos)
         change_state(1)
 
-
+## define function to stop when the goal is reached
 def done():
     twist_msg = Twist()
     twist_msg.linear.x = 0
     twist_msg.linear.y = 0
     pub.publish(twist_msg)
 
-
+## define planning funcion
 def planning(goal):
 
     global state_, desired_position_
@@ -139,7 +142,7 @@ def planning(goal):
         rospy.loginfo('Goal: Succeeded!')
         act_s.set_succeeded(result)
 
-
+## Main function
 def main():
     global pub, active_, act_s, pubz
     rospy.init_node('go_to_point')
@@ -154,9 +157,6 @@ def main():
 
     while not rospy.is_shutdown():
         rate.sleep()
-
-
-
 
 
 if __name__ == '__main__':
