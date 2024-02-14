@@ -303,6 +303,7 @@ class Normal(smach.State):
             time.sleep(5)
             ## read command (choice random between move random or go to sleep)
             self.command = user_action()
+
             rospy.loginfo('command received is %s', self.command)
 
             ## command is sleep

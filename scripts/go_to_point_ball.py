@@ -30,14 +30,18 @@ yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
 dist_precision_ = 0.1
 kp_a = 3.0
 kp_d = 0.5
+
+ub_d = 2.0
+
 ub_a = 0.6
 lb_a = -0.5
-ub_d = 2.0
+
 z_back = 0.25
 
 ## publisher
-pub = None
 pubz = None
+pub = None
+
 
 ## action_server
 act_s = None
@@ -45,12 +49,14 @@ act_s = None
 ##Define callback
 def clbk_odom(msg):
     global position_
-    global pose_
     global yaw_
+    global pose_
+
 
     ## position
-    position_ = msg.pose.pose.position
     pose_ = msg.pose.pose
+    position_ = msg.pose.pose.position
+
 
 
 def change_state(state):
