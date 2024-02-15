@@ -40,7 +40,9 @@ In order to perform this, Smach library is imported.
 
 In the Normal state, the robot can perform two possible actions (choosen randomly by "user_action" function): can switch in sleep state or can search for the ball, subscribing to the "camera1/image_raw/compressed" topic. Using OpenCV to show the image from the camera, the following window will be opened 
 
-
+<p align="center"> 
+<img src="https://github.com/SaiVinay023/Exp_Ass2/blob/main/images/window_ball.png">
+</p>
 
 If the ball is found, then it switches in Play state, otherwise it moves randomly: "move_dog" function is defined to send the goal position to the server of the robot (using "/robot_reaching_goal/goal" topic). 
 
@@ -68,10 +70,19 @@ There exists some folders in the package:
 
  - World folder: contains the ROS world file, ti create the environment in Gazebo (gridden arena). 
 
-
+<p align="center"> 
+<img src="https://github.com/SaiVinay023/Exp_Ass2/blob/main/images/Environment.png">
+</p>
 
  - Urdf folder: cointains the xacro, urdf and gazebo files of the robot, the ball and the human. Here the URDF models are defined. 
 
+<p align="center"> 
+<img src="https://github.com/SaiVinay023/Exp_Ass2/blob/main/images/URDFRobot_graph.png">
+</p>
+
+<p align="center"> 
+<img src="https://github.com/SaiVinay023/Exp_Ass2/blob/main/images/Dog_robot.png">
+</p>
 
 
  - Launch folder: cointains the launch file. 
@@ -116,7 +127,7 @@ The view of the dog robot (the xacro file) can be improved, in order to make it 
 
 # Author and contact
 
-S4845876
+S4845876 - Saivinay Manda
 
 saivinay023@gmail.com
 
