@@ -1,5 +1,30 @@
-# Exp_Ass2
+**##Project Name
 
+**Visually aided robodog -ROS2/OpenCV
+
+****Project Content
+
+RoboDog is an innovative ROS package that simulates a dog robot navigating an 8x8 gridded arena, equipped with three distinct behaviors: sleep, normal, and play. The environment includes a randomly moving green ball that enhances interaction.
+
+****Behavior Overview:
+
+Sleep State: The robot returns to its designated home position at (7, 7, 0) and remains stationary for a specified duration, mimicking a resting behavior.
+
+Normal State: In this mode, RoboDog actively searches for the green ball. If detected, it transitions to play mode; otherwise, it moves randomly around the arena, exploring its surroundings.
+
+Play State: When engaged in play, RoboDog tracks the ball’s movement. As it approaches the ball, the robot rotates its head to maintain focus, enhancing the realism of its play behavior.
+
+****Technical Implementation:
+RoboDog operates using a differential drive plugin for smooth movement, featuring a fixed neck joint and a head that rotates along the z-axis. The green ball is represented as a robot with a single link, utilizing the planar_move plugin for movement.
+
+Key Technologies:
+
+**Simulation Environment:** Gazebo for realistic modeling and simulation of both RoboDog and the green ball.
+
+**Programming Language:** Python, with ROS for managing nodes and behaviors.
+Communication: Two actionlib client-server architectures facilitate the motion commands for both RoboDog and the ball.
+
+**Visualization:** The robot's camera feed is processed using OpenCV, leveraging the CV_bridge library to convert between ROS and OpenCV image formats.
 
 # Introduction 
 The ROS package simulates a dog robot which can move freely in an arena (gridden area, 8x8) and can have three different behaviors: sleep, normal and play. A green ball is also implemented that can move randomly in the environment. 
